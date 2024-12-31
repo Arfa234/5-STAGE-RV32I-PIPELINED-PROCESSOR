@@ -1,0 +1,28 @@
+TEST CASES:
+1. Initializing Variables (R-Type):
+00030396 # addi x22, x0, 0 
+000303b6 # addi x23, x0, 0 
+00000593 # addi x10, x0, 10
+2. Compute & store (R, I & SB Type):
+00232393 # slli x24, x22, 
+00230223 # sw x22, 0x200(x24
+00130393 # addi x22, x22, 1
+00230363 # bne x22, x10, Loop1
+3. Reset (I-Type):
+00030396 # addi x22, x0, 0
+4. Compute & store (I & R-Type):
+00232393 # slli x24, x22, 2
+000302b3 # add x23, x22, x0
+5. Compute, Load & Jump (R, I & SB Type):
+002303b3 # slli x25, x23, 2 
+00230283 # lw x1, 0x200(x24) 
+00230303 # lw x2, 0x200(x25) 
+002302b3 # bge x1, x2, EndIf
+6. Compute & store (R & I Type):
+000301b3 # add x5, x1, x0
+00230323 # sw x2, 0x200(x24)
+00230363 # sw x5, 0x200(x25) 
+001303b3 # addi x23, x23, 1 
+00230363 # bne x23, x10, Loop3 
+00130393 # addi x22, x22, 1 
+00230363 # bne x22, x10, Loop2
